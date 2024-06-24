@@ -1,0 +1,263 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.root {
+	-primary-color: #8a2be2;
+	/*-fx-base: #d4d4d4;*/
+	/*-secondary-color: white;*/
+	-text-fill-color: white;
+	-primary-hover-color: derive(-primary-color, -40%);
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+}
+
+.button {
+	-fx-background-color: -primary-color;
+	-fx-text-fill: -text-fill-color;
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+	-fx-background-radius: 5px;
+	-fx-background-insets: 0, 0, 0, 0, 0;
+}
+
+.button:hover {
+	-fx-background-color: -primary-hover-color;
+	-fx-background-insets: 0, 0, 0, 0, 0;
+}
+
+.label {
+	-fx-font-size: 16px;
+	-fx-text-fill: -primary-color;
+}
+
+.text-field {
+	-fx-control-inner-background: #f4f4f4;
+	-fx-font-size: 14px;
+	-fx-effect: none;
+	-fx-background-color: -fx-text-box-border, -fx-control-inner-background;
+	-fx-border-color: #ababab;
+	-fx-border-radius: 3px;
+	-fx-highlight-fill: -primary-color;
+}
+
+.text-field:focused {
+	-fx-control-inner-background: #f4f4f4;
+	-fx-font-size: 14px;
+	-fx-effect: none;
+	-fx-background-color: -fx-text-box-border, -fx-control-inner-background;
+	-fx-border-color: -primary-color;
+	-fx-border-radius: 3px;
+	-fx-highlight-fill: -primary-color;
+}
+
+.text-area {
+	-fx-font-size: 14px;
+	-fx-background-color: -text-fill-color;
+}
+
+.list-cell {
+	-fx-background-color: transparent;
+}
+
+.list-view {
+	-fx-background-color: transparent;
+}
+
+.list-view:focused {
+	-fx-border-color: transparent;
+	-fx-inner-border: transparent;
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+}
+
+/*menu and submenus */
+.context-menu {
+    -fx-background-color: #e0e0e0;
+    -fx-effect: null;
+    -fx-padding: 3 2 3 2;
+    -fx-background-radius: 10; /* Aumenta il valore per un effetto più stondato */
+}
+
+.menu {
+	-fx-background-color: transparent;
+	-fx-text-fill: -primary-color;
+}
+
+.menu-item {
+    -fx-background-color: transparent;
+	-fx-text-fill: -primary-color;
+    -fx-effect: null;
+    -fx-background-radius: 10; /* Aumenta il valore per un effetto più stondato */
+}
+
+.menu-item .label {
+    -fx-font-size: 14px; /* Adjust the font size as needed */
+}
+
+.menu:showing, .menu:hover {
+	-fx-background-color: -primary-color;
+}
+
+.menu-item:showing, .menu-item:hover {
+	-fx-background-color: -primary-color;
+	-fx-text-fill: -text-fill-color;
+}
+
+.menu-item:showing, .menu-item:hover .label {
+	-fx-text-fill: -text-fill-color;
+}
+
+.menu:showing .label, .menu:hover .label {
+	-fx-text-fill: -text-fill-color;
+}
+
+#pingMenuItem:showing, #pingMenuItem:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: -primary-color;
+}
+
+#pingContextMenuItem:showing, #pingContextMenuItem:hover {
+	-fx-background-color: transparent;
+}
+
+
+/*CHART*/
+.axis-tick-mark {
+    -fx-stroke: #6e6e6e;
+    
+}
+
+.axis-minor-tick-mark {
+    -fx-stroke: #6e6e6e;
+}
+
+.axis {    
+    -fx-tick-label-fill: -primary-color;
+    -fx-tick-length: 5;
+    -fx-tick-label-font-size: 10px;
+    
+}
+
+.default-color0.chart-series-line { -fx-stroke: -primary-color; }
+.default-color0.chart-line-symbol { -fx-background-color: -primary-color, #ebebeb;}
+
+.axis:left {-fx-border-color: transparent #0f0f0f transparent transparent;}
+.axis:bottom{-fx-border-color: #0f0f0f transparent transparent;}
+
+.chart {
+    -fx-padding: 0px;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.slider .axis{
+    -fx-border-color: #f4f4f4 transparent transparent;
+}
+
+
+/*ACCORDION */
+.accordion>.titled-pane>.title {
+	-fx-background-radius: 10px;
+	-fx-font-size: 16px;
+	-fx-background-color: -primary-color;
+}
+
+.accordion>.titled-pane>.title>.text {
+	-fx-fill: -text-fill-color;
+}
+
+.accordion>.titled-pane>.title>.arrow-button .arrow {
+	-fx-background-color: -text-fill-color;
+}
+
+.accordion>.titled-pane>.content {
+	-fx-border-width: 0;
+	-fx-background-color: transparent;
+}
+
+/*SLIDER */
+.slider .thumb {
+	-fx-background-color: -primary-color;
+}
+
+/*TABS */
+.tab .tab-label {
+	-fx-text-fill: -primary-color;
+	/* Colore del testo del titolo della tab */
+	-fx-font-weight: bold;
+	/* Opzionale: Imposta il grassetto per enfatizzare il testo */
+}
+
+.tab-pane>.tab-header-area>.headers-region>.tab {
+	-fx-padding: 0.2em 2em 0.2em 2em; /* Imposta il padding desiderato */
+}
+
+/*COMBO BOX */
+.combo-box .list-cell .text {
+	-fx-fill: -primary-color;
+}
+
+.combo-box .list-cell:hover .text {
+	-fx-fill: -text-fill-color;
+}
+
+.combo-box .list-cell:hover {
+	-fx-background-color: -primary-color;
+}
+
+.combo-box .list-cell {
+	-fx-background-color: #ebebeb;
+	-fx-background-radius: 0
+}
+
+.combo-box-base .arrow-button {
+    -fx-background-color: #ebebeb;
+}
+
+.combo-box{
+    -fx-effect: null;
+    -fx-border-width: 0px;
+    -fx-background-color: #ebebeb;
+}
+
+.color-picker{
+	-fx-background-color: #ebebeb;
+}
+
+.custom-message-text {
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-highlight-fill: -primary-color;
+}
+
+.custom-message-text:focused {
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-highlight-fill: -primary-color;
+}
+
+.custom-message-text .scroll-bar:vertical {
+    -fx-pref-width: 1;
+    -fx-opacity: 0;
+}
+.custom-message-text .scroll-bar:horizontal {
+    -fx-pref-height: 1;
+    -fx-opacity: 0;
+}
+
+.custom-message-text .content {
+	-fx-padding: 0px 0px 0px 0px;
+}
+
+.tooltip {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-fill-color;
+    -fx-show-delay: 100ms;
+    -fx-effect: null; 
+}
