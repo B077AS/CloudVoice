@@ -4,43 +4,48 @@ import java.io.Serializable;
 
 public class ConnectToRoomObject implements Serializable{
 
-	private int id;
-	private int port;
-	private RoomsEnum type;
+	private Room mainRoom;
+	private Room textRoom;
+	private Room videoRoom;
 	private UserDetailsObject user;
 
-	public ConnectToRoomObject(int id, int port, RoomsEnum type, UserDetailsObject user) {
-		super();
-		this.id = id;
-		this.port = port;
-		this.type = type;
+	public ConnectToRoomObject(Room mainRoom, UserDetailsObject user) {
 		this.user = user;
+		this.mainRoom=mainRoom;
 	}
 
-	public int getId() {
-		return id;
+	public ConnectToRoomObject(Room mainRoom, Room textRoom, Room videoRoom, UserDetailsObject user) {
+		super();
+		this.mainRoom = mainRoom;
+		this.user = user;
+		this.textRoom = textRoom;
+		this.videoRoom = videoRoom;
 	}
-	
-	public void setId(int id) {
-		this.id = id;
+
+	public Room getMainRoom() {
+		return mainRoom;
 	}
-	
-	public int getPort() {
-		return port;
+
+	public void setMainRoom(Room mainRoom) {
+		this.mainRoom = mainRoom;
 	}
-	
-	public void setPort(int port) {
-		this.port = port;
+
+	public Room getTextRoom() {
+		return textRoom;
 	}
-	
-	public RoomsEnum getType() {
-		return type;
+
+	public void setTextRoom(Room textRoom) {
+		this.textRoom = textRoom;
 	}
-	
-	public void setType(RoomsEnum type) {
-		this.type = type;
+
+	public Room getVideoRoom() {
+		return videoRoom;
 	}
-	
+
+	public void setVideoRoom(Room videoRoom) {
+		this.videoRoom = videoRoom;
+	}
+
 	public UserDetailsObject getUser() {
 		return user;
 	}

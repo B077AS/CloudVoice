@@ -10,6 +10,7 @@ import main.model.VPS;
 import main.view.MainWindow;
 import rooms.voiceRooms.VoiceRoom;
 import serializedObjects.ConnectToRoomObject;
+import serializedObjects.Room;
 import serializedObjects.UserDetailsObject;
 import java.awt.AWTException;
 import java.awt.Rectangle;
@@ -173,7 +174,8 @@ public class VideoManager {
 
 	public void sendRoomDetails() {
 		try {
-			ConnectToRoomObject object=new ConnectToRoomObject(room.getID(), room.getPort(), room.getType(), mainModel.getUser().getUserDetails());
+			Room currentRoom=new Room(room.getID(), room.getPort(), room.getType());
+			ConnectToRoomObject object=new ConnectToRoomObject(currentRoom, mainModel.getUser().getUserDetails());
 			socket=mainModel.getSocket();
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 			objectOutputStream.writeObject(object);

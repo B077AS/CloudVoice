@@ -10,6 +10,7 @@ import main.view.MainWindow;
 import rooms.videoRooms.VideoRoom;
 import rooms.voiceRooms.VoiceRoom;
 import serializedObjects.ConnectToRoomObject;
+import serializedObjects.Room;
 
 public class StreamingModel {
 	
@@ -30,7 +31,8 @@ public class StreamingModel {
 
 	public void sendRoomDetails() {
 		try {
-			ConnectToRoomObject object=new ConnectToRoomObject(room.getID(), room.getPort(), room.getType(), mainWindowModel.getUser().getUserDetails());
+			Room currentRoom=new Room(room.getID(), room.getPort(), room.getType());
+			ConnectToRoomObject object=new ConnectToRoomObject(currentRoom, mainWindowModel.getUser().getUserDetails());
 			socket=mainWindowModel.getSocket();
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 			objectOutputStream.writeObject(object);

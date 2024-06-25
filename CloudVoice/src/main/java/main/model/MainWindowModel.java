@@ -26,10 +26,12 @@ import main.view.CustomAlert;
 import main.view.MainWindow;
 import rooms.ChatRoom;
 import rooms.textRooms.MessagesManager;
+import rooms.textRooms.TextRoom;
 import rooms.videoRooms.VideoManager;
 import rooms.videoRooms.screenShare.WindowLister;
 import rooms.voiceRooms.AudioManager;
 import rooms.voiceRooms.PushToTalkListener;
+import rooms.voiceRooms.VoiceRoom;
 import serializedObjects.ChatMessage;
 import serializedObjects.OpenPortsMessage;
 import serializedObjects.PingObject;
@@ -41,6 +43,7 @@ import serializedObjects.RoomsEnum;
 import serializedObjects.StopPingObject;
 import serializedObjects.UpdateMessage;
 import serializedObjects.UserDetailsObject;
+import serializedObjects.Room;
 import server.Server;
 import server.ServerBox;
 import server.ServerCreateWindow;
@@ -198,7 +201,28 @@ public class MainWindowModel {
 	public void alertServerForNewRoom(ChatRoom room) {
 		try {
 			user.getUserDetails().setDisconnect(false);
-			ConnectToRoomObject object=new ConnectToRoomObject(room.getID(), room.getPort(), room.getType(), user.getUserDetails());
+			
+			ConnectToRoomObject object;
+			try {
+				VoiceRoom currentVoiceRoom=(VoiceRoom)room;
+				Room roomObject=new Room(currentVoiceRoom.getID(), currentVoiceRoom.getPort(), currentVoiceRoom.getType());
+				roomObject.setAssociatedTextRoom(currentVoiceRoom.getTextRoom().getID());
+				roomObject.setAssociatedVideoRoom(currentVoiceRoom.getVideoRoom().getID());
+				
+				Room textRoom=new Room(currentVoiceRoom.getTextRoom().getID(), currentVoiceRoom.getTextRoom().getPort(), currentVoiceRoom.getTextRoom().getType());
+				textRoom.setAssociatedRoom(currentVoiceRoom.getID());
+				Room videoRoom=new Room(currentVoiceRoom.getVideoRoom().getID(), currentVoiceRoom.getVideoRoom().getPort(), currentVoiceRoom.getVideoRoom().getType());
+				videoRoom.setAssociatedRoom(currentVoiceRoom.getID());
+				
+				object=new ConnectToRoomObject(roomObject, textRoom, videoRoom, user.getUserDetails());
+				
+			}catch (Exception e) {
+				TextRoom currentTextRoom=(TextRoom)room;
+				Room roomObject=new Room(currentTextRoom.getID(), currentTextRoom.getPort(), currentTextRoom.getType());
+				object=new ConnectToRoomObject(roomObject, user.getUserDetails());
+			}
+			
+			
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 			objectOutputStream.writeObject(object);
 			objectOutputStream.flush();
